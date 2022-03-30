@@ -57,11 +57,14 @@
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIWaypointNetwork.cs" />
     <Compile Include="Assets\Navigation Example\SmoothCameraMount.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\GameSceneManager.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieStateMachine.cs" />
     <Compile Include="Assets\Navigation Example\SlidingDoorDemo.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentNoRootMotion.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIStateMachine.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentRootMotion.cs" />
-    <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieStateMachine.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\AISensor.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\State Machine Behaviours\AIStateMachineLink.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\State Machine Behaviours\RootMotionConfigurator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
