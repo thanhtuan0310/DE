@@ -25,5 +25,4 @@ public class AISensor : MonoBehaviour
 		if (_parentStateMachine != null)
 			_parentStateMachine.OnTriggerEvent(AITriggerEventType.Exit, col);
 	}
-
 }
