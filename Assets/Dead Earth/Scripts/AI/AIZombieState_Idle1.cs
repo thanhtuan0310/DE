@@ -94,6 +94,7 @@ public class AIZombieState_Idle1 : AIZombieState
 		// Patrol if idle time has been exceeded
 		if (_timer > _idleTime)
 		{
+			Debug.Log("P");
 			return AIStateType.Patrol;
 		}
 
