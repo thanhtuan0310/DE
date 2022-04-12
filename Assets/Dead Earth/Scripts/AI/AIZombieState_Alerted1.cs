@@ -8,9 +8,11 @@ public class AIZombieState_Alerted1 : AIZombieState
 	[SerializeField] [Range(1, 60)] float _maxDuration = 10.0f;
 	[SerializeField] float _waypointAngleThreshold = 90.0f;
 	[SerializeField] float _threatAngleThreshold = 10.0f;
+	[SerializeField] float _directionChangeTime = 1.5f;
 
 	// Private Fields
 	float _timer = 0.0f;
+	float _directionChangeTimer = 0.0f;
 
 	// ------------------------------------------------------------------
 	// Name	:	GetStateType
@@ -42,6 +44,7 @@ public class AIZombieState_Alerted1 : AIZombieState
 		_zombieStateMachine.attackType = 0;
 
 		_timer = _maxDuration;
+		_directionChangeTimer = 0.0f;
 	}
 
 	// ---------------------------------------------------------------------
@@ -52,9 +55,15 @@ public class AIZombieState_Alerted1 : AIZombieState
 	{
 		// Reduce Timer
 		_timer -= Time.deltaTime;
+		_directionChangeTimer += Time.deltaTime;
 
 		// Transition into a patrol state if available
-		if (_timer <= 0.0f) return AIStateType.Patrol;
+		if (_timer <= 0.0f)
+		{
+			_zombieStateMachine.navAgent.SetDestination(_zombieStateMachine.GetWaypointPosition(false));
+			_zombieStateMachine.navAgent.isStopped = false;
+			_timer = _maxDuration;
+		}
 
 		// Do we have a visual threat that is the player. These take priority over audio threats
 		if (_zombieStateMachine.VisualThreat.type == AITargetType.Visual_Player)
@@ -84,7 +93,7 @@ public class AIZombieState_Alerted1 : AIZombieState
 
 		float angle;
 
-		if (_zombieStateMachine.targetType == AITargetType.Audio || _zombieStateMachine.targetType == AITargetType.Visual_Light)
+		if ((_zombieStateMachine.targetType == AITargetType.Audio || _zombieStateMachine.targetType == AITargetType.Visual_Light) && !_zombieStateMachine.isTargetReached)
 		{
 			angle = AIState.FindSignedAngle(_zombieStateMachine.transform.forward,
 											_zombieStateMachine.targetPosition - _zombieStateMachine.transform.position);
@@ -93,23 +102,35 @@ public class AIZombieState_Alerted1 : AIZombieState
 			{
 				return AIStateType.Pursuit;
 			}
-			if (Random.value < _zombieStateMachine.intelligence)
+
+			if (_directionChangeTimer > _directionChangeTime)
 			{
-				_zombieStateMachine.seeking = (int)Mathf.Sign(angle);
-			}
-			else
-			{
-				_zombieStateMachine.seeking = (int)Mathf.Sign(Random.Range(-1.0f, 1.0f));
+				if (Random.value < _zombieStateMachine.intelligence)
+				{
+					_zombieStateMachine.seeking = (int)Mathf.Sign(angle);
+				}
+				else
+				{
+					_zombieStateMachine.seeking = (int)Mathf.Sign(Random.Range(-1.0f, 1.0f));
+				}
+
+				_directionChangeTimer = 0.0f;
 			}
 		}
+
 		else
-		if (_zombieStateMachine.targetType == AITargetType.Waypoint)
+
+		if (_zombieStateMachine.targetType == AITargetType.Waypoint && !_zombieStateMachine.navAgent.pathPending)
 		{
 			angle = AIState.FindSignedAngle(_zombieStateMachine.transform.forward,
 											_zombieStateMachine.navAgent.steeringTarget - _zombieStateMachine.transform.position);
 
 			if (Mathf.Abs(angle) < _waypointAngleThreshold) return AIStateType.Patrol;
-			_zombieStateMachine.seeking = (int)Mathf.Sign(angle);
+			if (_directionChangeTimer > _directionChangeTime)
+			{
+				_zombieStateMachine.seeking = (int)Mathf.Sign(angle);
+				_directionChangeTimer = 0.0f;
+			}
 		}
 
 		return AIStateType.Alerted;
