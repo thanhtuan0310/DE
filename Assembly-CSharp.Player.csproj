@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIState.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Feeding1.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Idle1.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Patrol1.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\State Machine Behaviours\RootMotionConfigurator.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIStateMachine.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AISensor.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentRootMotion.cs" />
-    <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Feeding1.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\FPSController\FPSController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -618,6 +619,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{DEF9A3D7-AF67-36CB-E01A-D4C35F1A7AEB}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{F805132F-0B23-F6FD-A618-11E50F3705B3}</Project>
       <Name>Unity.Timeline</Name>

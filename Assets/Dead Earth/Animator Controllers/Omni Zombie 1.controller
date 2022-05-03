@@ -50,6 +50,20 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-7380142019716164343
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24cafa06847ab7489eee7e98fec21a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rootPosition: 1
+  _rootRotation: 0
 --- !u!1102 &-7330326944928185764
 AnimatorState:
   serializedVersion: 6
@@ -361,7 +375,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 415184810494829978}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -7380142019716164343}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -441,7 +456,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Cinamatic
+    m_Name: Cinematic
     m_StateMachine: {fileID: 3075070861251320389}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -612,7 +627,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cinamatic
+  m_Name: Cinematic
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -433808676886369969}
