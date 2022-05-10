@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2021.1.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIState.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Feeding1.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Idle1.cs" />
@@ -65,15 +68,16 @@
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Alerted1.cs" />
     <Compile Include="Assets\Navigation Example\SmoothCameraMount.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\GameSceneManager.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Attack1.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieStateMachine.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\State Machine Behaviours\AIStateMachineLink.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\MeleeZoneTrigger.cs" />
     <Compile Include="Assets\Navigation Example\SlidingDoorDemo.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentNoRootMotion.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIStateMachine.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AISensor.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentRootMotion.cs" />
-    <Compile Include="Assets\Dead Earth\Scripts\AI\MeleeZoneTrigger.cs" />
-    <Compile Include="Assets\Dead Earth\Scripts\AI\AIZombieState_Attack1.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\AI\AIDamageTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
