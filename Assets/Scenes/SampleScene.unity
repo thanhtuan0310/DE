@@ -3795,10 +3795,10 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 0
+  cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  emitterVelocityMode: 1
+  emitterVelocityMode: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -4413,7 +4413,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 20
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -4499,7 +4499,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.5
+      value: 0.02
       mode: 0
       spread: 0
       speed:
@@ -4889,7 +4889,7 @@ ParticleSystem:
     enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -4942,7 +4942,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -4995,9 +4995,9 @@ ParticleSystem:
         m_RotationOrder: 4
     curve:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1.5707963
-      minScalar: 0.7853982
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -8612,6 +8612,7 @@ GameObject:
   - component: {fileID: 582276633}
   - component: {fileID: 582276632}
   - component: {fileID: 582276634}
+  - component: {fileID: 582276638}
   - component: {fileID: 582276637}
   - component: {fileID: 582276636}
   - component: {fileID: 582276635}
@@ -8672,7 +8673,7 @@ MonoBehaviour:
   - {fileID: 582276637}
   - {fileID: 582276636}
   _walkSpeed: 2
-  _runSpeed: 5
+  _runSpeed: 4.5
   _jumpSpeed: 7.5
   _crouchSpeed: 1
   _stickToGroundForce: 5
@@ -8742,7 +8743,7 @@ MonoBehaviour:
     MinimumX: -90
     MaximumX: 90
     smooth: 0
-    smoothTime: 5
+    smoothTime: 20
     lockCursor: 1
 --- !u!208 &582276635
 NavMeshObstacle:
@@ -8952,6 +8953,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &582276638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582276631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ebf5279e7e26e49bf4c862431659bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meleeTrigger: {fileID: 1761667018}
+  _cameraBloodEffect: {fileID: 1985247322}
+  _camera: {fileID: 1985247320}
+  _health: 100
 --- !u!1 &649751890
 GameObject:
   m_ObjectHideFlags: 0
@@ -9350,6 +9367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameter: RightHand
   _bloodParticlesBurstAmount: 10
+  _damageAmount: 50
 --- !u!135 &1028943954
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9377,6 +9395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameter: LeftHand
   _bloodParticlesBurstAmount: 10
+  _damageAmount: 50
 --- !u!135 &1028943956
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9863,7 +9882,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameter: Mouth
-  _bloodParticlesBurstAmount: 10
+  _bloodParticlesBurstAmount: 30
+  _damageAmount: 10
 --- !u!136 &1845068112
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10069,6 +10089,7 @@ GameObject:
   - component: {fileID: 1985247319}
   - component: {fileID: 1985247320}
   - component: {fileID: 1985247321}
+  - component: {fileID: 1985247322}
   m_Layer: 11
   m_Name: FPS Camera
   m_TagString: MainCamera
@@ -10142,6 +10163,26 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985247318}
   m_Enabled: 1
+--- !u!114 &1985247322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985247318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90236fd980585f74e8c36c5339efae8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodTexture: {fileID: 2800000, guid: bec481b4a2f178040855311218606248, type: 3}
+  _bloodNormalMap: {fileID: 2800000, guid: 125c4a3796f0f3446923d7da18946e31, type: 3}
+  _bloodAmount: 0.04
+  _minBloodAmount: 0.04
+  _distortion: 0.86
+  _autoFade: 1
+  _fadeSpeed: 0.1
+  _shader: {fileID: 4800000, guid: 5edb9b312070e3c429c7f265b81aa790, type: 3}
 --- !u!1 &2034591169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
@@ -10224,7 +10265,7 @@ MonoBehaviour:
   _aggression: 0.5
   _health: 100
   _intelligence: 1
-  _satisfaction: 0
+  _satisfaction: 0.53
   _replenishRate: 2
   _depletionRate: 0.1
 --- !u!114 &2034591174

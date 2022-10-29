@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class AIDamageTrigger : MonoBehaviour
 {
 	// Inspector Variables
 	[SerializeField] string _parameter = "";
 	[SerializeField] int _bloodParticlesBurstAmount = 10;
+	[SerializeField] float _damageAmount = 0.1f;
 
 	// Private Variables
 	AIStateMachine _stateMachine = null;
 	Animator _animator = null;
 	int _parameterHash = -1;
+	GameSceneManager _gameSceneManager = null;
 
 	// ------------------------------------------------------------
 	// Name	:	Start
@@ -27,6 +28,8 @@ public class AIDamageTrigger : MonoBehaviour
 
 		// Generate parameter hash for more efficient parameter lookups from the animator
 		_parameterHash = Animator.StringToHash(_parameter);
+
+		_gameSceneManager = GameSceneManager.instance;
 	}
 
 	// -------------------------------------------------------------
@@ -40,7 +43,7 @@ public class AIDamageTrigger : MonoBehaviour
 		if (!_animator)
 			return;
 
-		// If this is the player object and our parameter is set for damafe
+		// If this is the player object and our parameter is set for damage
 		if (col.gameObject.CompareTag("Player") && _animator.GetFloat(_parameterHash) > 0.9f)
 		{
 			if (GameSceneManager.instance && GameSceneManager.instance.bloodParticles)
@@ -54,7 +57,15 @@ public class AIDamageTrigger : MonoBehaviour
 				system.simulationSpace = ParticleSystemSimulationSpace.World;
 				system.Emit(_bloodParticlesBurstAmount);
 			}
-			Debug.Log("Player being Damaged ");
+
+			if (_gameSceneManager != null)
+			{
+				PlayerInfo info = _gameSceneManager.GetPlayerInfo(col.GetInstanceID());
+				if (info != null && info.characterManager != null)
+				{
+					info.characterManager.TakeDamage(_damageAmount);
+				}
+			}
 		}
 	}
 }
