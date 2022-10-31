@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class AIZombieState_Feeding1 : AIZombieState
 {
@@ -86,7 +85,8 @@ public class AIZombieState_Feeding1 : AIZombieState
 					ParticleSystem system = GameSceneManager.instance.bloodParticles;
 					system.transform.position = _bloodParticlesMount.transform.position;
 					system.transform.rotation = _bloodParticlesMount.transform.rotation;
-					system.simulationSpace = ParticleSystemSimulationSpace.World;
+					var settings = system.main;
+					settings.simulationSpace = ParticleSystemSimulationSpace.World;
 					system.Emit(_bloodParticlesBurstAmount);
 					_timer = 0.0f;
 				}
@@ -106,4 +106,5 @@ public class AIZombieState_Feeding1 : AIZombieState
 		// Stay in Feeding state
 		return AIStateType.Feeding;
 	}
+
 }
