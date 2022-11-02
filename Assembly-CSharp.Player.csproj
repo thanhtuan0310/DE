@@ -78,6 +78,7 @@
     <Compile Include="Assets\Navigation Example\SlidingDoorDemo.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentNoRootMotion.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AIStateMachine.cs" />
+    <Compile Include="Assets\Dead Earth\Scripts\FPSController\CinematicEnabler.cs" />
     <Compile Include="Assets\Dead Earth\Scripts\AI\AISensor.cs" />
     <Compile Include="Assets\Navigation Example\NavAgentRootMotion.cs" />
   </ItemGroup>

@@ -64,6 +64,7 @@ public abstract class AIStateMachine : MonoBehaviour
 	protected bool _isTargetReached = false;
 	protected List<Rigidbody> _bodyParts = new List<Rigidbody>();
 	protected int _aiBodyPartLayer = -1;
+	protected bool _cinematicEnabled = false;
 
 	// Protected Inspector Assigned
 	[SerializeField] protected AIStateType _currentStateType = AIStateType.Idle;
@@ -125,6 +126,11 @@ public abstract class AIStateMachine : MonoBehaviour
 			else
 				return -1;
 		}
+	}
+	public bool cinematicEnabled
+	{
+		get { return _cinematicEnabled; }
+		set { _cinematicEnabled = value; }
 	}
 
 	// -----------------------------------------------------------------
@@ -509,6 +515,6 @@ public abstract class AIStateMachine : MonoBehaviour
 
 	public virtual void TakeDamage(Vector3 position, Vector3 force, int damage, Rigidbody bodyPart, CharacterManager characterManager, int hitDirection = 0)
 	{
-		Debug.Log("Ouch");
+
 	}
 }

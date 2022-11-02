@@ -9749,7 +9749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7469026412346215495, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: LowerBody
+      value: Lower Body
       objectReference: {fileID: 0}
     - target: {fileID: -7312981136808073517, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9757,7 +9757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7312981136808073517, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: LowerBody
+      value: Lower Body
       objectReference: {fileID: 0}
     - target: {fileID: -5343121461258200508, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9765,7 +9765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5343121461258200508, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: UpperBody
+      value: Upper Body
       objectReference: {fileID: 0}
     - target: {fileID: -5080165188405679376, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9773,7 +9773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5080165188405679376, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: LowerBody
+      value: Lower Body
       objectReference: {fileID: 0}
     - target: {fileID: -4799876848884336152, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9781,7 +9781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4799876848884336152, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: UpperBody
+      value: Upper Body
       objectReference: {fileID: 0}
     - target: {fileID: -4519412183027553179, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9789,7 +9789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4519412183027553179, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: LowerBody
+      value: Lower Body
       objectReference: {fileID: 0}
     - target: {fileID: -3803930360621070614, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9797,7 +9797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3803930360621070614, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: UpperBody
+      value: Upper Body
       objectReference: {fileID: 0}
     - target: {fileID: -2123234437176646832, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9805,7 +9805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2123234437176646832, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: UpperBody
+      value: Upper Body
       objectReference: {fileID: 0}
     - target: {fileID: -417878991522404143, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Layer
@@ -9813,7 +9813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -417878991522404143, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: UpperBody
+      value: Upper Body
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_Name
@@ -9845,7 +9845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273956300578523486, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_TagString
-      value: UpperBody
+      value: Upper Body
       objectReference: {fileID: 0}
     - target: {fileID: 9060337841930554699, guid: 55575c7314a7e954e80039dbcf8efa84, type: 3}
       propertyPath: m_IsActive
@@ -11248,6 +11248,11 @@ MonoBehaviour:
   _hearing: 1
   _aggression: 0.5
   _health: 100
+  _lowerBodyDamage: 0
+  _upperBodyDamage: 0
+  _upperBodyThreshold: 30
+  _limpThreshold: 30
+  _crawlThreshold: 90
   _intelligence: 1
   _satisfaction: 0.53
   _replenishRate: 2
