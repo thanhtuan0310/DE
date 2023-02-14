@@ -1,7 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum AIBoneControlType { Animated, Ragdoll, RagdollToAnim }
+
+// ----------------------------------------------------------------
+// Class	:	BodyPartSnapshot
+// Desc		:   Used to store information about the positions of
+//				each body part when transitioning from a 
+//				ragdoll
+// ----------------------------------------------------------------
+public class BodyPartSnapshot
+{
+	public Transform transform;
+	public Vector3 position;
+	public Quaternion rotation;
+	public Quaternion localRotation;
+
+}
 
 // --------------------------------------------------------------------------
 // CLASS	:	AIZombieStateMachine
@@ -24,6 +40,8 @@ public class AIZombieStateMachine : AIStateMachine
 	[SerializeField] [Range(0.0f, 1.0f)] float _satisfaction = 1.0f;
 	[SerializeField] float _replenishRate = 0.5f;
 	[SerializeField] float _depletionRate = 0.1f;
+	[SerializeField] float _reanimationBlendTime = 1.5f;
+	[SerializeField] float _reanimationWaitTime = 3.0f;
 
 	// Private
 	private int _seeking = 0;
@@ -34,6 +52,13 @@ public class AIZombieStateMachine : AIStateMachine
 
 	// Ragdoll Stuff
 	private AIBoneControlType _boneControlType = AIBoneControlType.Animated;
+	private List<BodyPartSnapshot> _bodyPartSnapShots = new List<BodyPartSnapshot>();
+	private float _ragdollEndTime = float.MinValue;
+	private Vector3 _ragdollHipPosition;
+	private Vector3 _ragdollFeetPosition;
+	private Vector3 _ragdollHeadPosition;
+	private IEnumerator _reanimationCoroutine = null;
+	private float _mecanimTransitionTime = 0.1f;
 
 	// Hashes
 	private int _speedHash = Animator.StringToHash("Speed");
@@ -70,6 +95,19 @@ public class AIZombieStateMachine : AIStateMachine
 	protected override void Start()
 	{
 		base.Start();
+
+		// Create BodyPartSnapShot List
+		if (_rootBone != null)
+		{
+			Transform[] transforms = _rootBone.GetComponentsInChildren<Transform>();
+			foreach (Transform trans in transforms)
+			{
+				BodyPartSnapshot snapShot = new BodyPartSnapshot();
+				snapShot.transform = trans;
+				_bodyPartSnapShots.Add(snapShot);
+			}
+		}
+
 		UpdateAnimatorDamage();
 	}
 
@@ -145,7 +183,11 @@ public class AIZombieStateMachine : AIStateMachine
 
 				if (_health > 0)
 				{
-					// TODO: Reanimate Zombie
+					if (_reanimationCoroutine != null)
+						StopCoroutine(_reanimationCoroutine);
+
+					_reanimationCoroutine = Reanimate();
+					StartCoroutine(_reanimationCoroutine);
 				}
 			}
 
@@ -182,9 +224,9 @@ public class AIZombieStateMachine : AIStateMachine
 			}
 		}
 
-        if (_boneControlType != AIBoneControlType.Animated || isCrawling || cinematicEnabled || attackerLocPos.z < 0) shouldRagdoll = true;
+		if (_boneControlType != AIBoneControlType.Animated || isCrawling || cinematicEnabled || attackerLocPos.z < 0) shouldRagdoll = true;
 
-        if (!shouldRagdoll)
+		if (!shouldRagdoll)
 		{
 			float angle = 0.0f;
 			if (hitDirection == 0)
@@ -253,9 +295,22 @@ public class AIZombieStateMachine : AIStateMachine
 
 			if (_health > 0)
 			{
-				// TODO: Reanimate Zombie
+				if (_reanimationCoroutine != null)
+					StopCoroutine(_reanimationCoroutine);
+
+				_reanimationCoroutine = Reanimate();
+				StartCoroutine(_reanimationCoroutine);
 			}
 		}
 
+	}
+
+	// ----------------------------------------------------------------
+	// Name	:	Reanimate (coroutine)
+	// Desc	:	Starts the reanimation procedure
+	// ----------------------------------------------------------------
+	private IEnumerator Reanimate()
+	{
+		yield return null;
 	}
 }
